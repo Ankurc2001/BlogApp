@@ -16,14 +16,14 @@ class Home extends React.Component {
   componentDidMount() {
     const { onLoad } = this.props;
 
-    axios('http://localhost:8000/api/articles')
+    axios('http://localhost:3000/api/articles/home')
       .then((res) => onLoad(res.data));
   }
 
   handleDelete(id) {
     const { onDelete } = this.props;
 
-    return axios.delete(`http://localhost:8000/api/articles/${id}`)
+    return axios.delete(`http://localhost:3000/api/articles/home/${id}`)
       .then(() => onDelete(id));
   }
 
@@ -40,7 +40,7 @@ class Home extends React.Component {
       <div className="container">
         <div className="row pt-5">
           <div className="col-12 col-lg-6 offset-lg-3">
-            <h1 className="text-center">LightBlog</h1>
+            <h1 className="text-center">Blog</h1>
           </div>
           <Form />
         </div>

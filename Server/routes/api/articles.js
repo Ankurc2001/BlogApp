@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const router = require('express').Router();
 const Articles = mongoose.model('Articles');
 
-router.post('/', (req, res, next) => {
+router.post('/home', (req, res, next) => {
   const { body } = req;
 
   if(!body.title) {
@@ -35,7 +35,7 @@ router.post('/', (req, res, next) => {
     .catch(next);
 });
 
-router.get('/', (req, res, next) => {
+router.get('/home', (req, res, next) => {
   return Articles.find()
     .sort({ createdAt: 'descending' })
     .then((articles) => res.json({ articles: articles.map(article => article.toJSON()) }))
@@ -53,13 +53,13 @@ router.param('id', (req, res, next, id) => {
   }).catch(next);
 });
 
-router.get('/:id', (req, res, next) => {
+router.get('/home/:id', (req, res, next) => {
   return res.json({
     article: req.article.toJSON(),
   });
 });
 
-router.patch('/:id', (req, res, next) => {
+router.patch('/homme/:id', (req, res, next) => {
   const { body } = req;
 
   if(typeof body.title !== 'undefined') {
@@ -73,13 +73,12 @@ router.patch('/:id', (req, res, next) => {
   if(typeof body.body !== 'undefined') {
     req.article.body = body.body;
   }
-
   return req.article.save()
     .then(() => res.json({ article: req.article.toJSON() }))
     .catch(next);
 });
 
-router.delete('/:id', (req, res, next) => {
+router.delete('/home/:id', (req, res, next) => {
   return Articles.findByIdAndRemove(req.article._id)
     .then(() => res.sendStatus(200))
     .catch(next);

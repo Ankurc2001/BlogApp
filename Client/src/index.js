@@ -1,22 +1,23 @@
 import React from 'react';
 import { createBrowserHistory } from "history";
 import ReactDOM from 'react-dom';
-import { Route, Switch, Router } from 'react-router-dom';
+import { Route, Switch, Router,BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 import store from './store';
-import { App } from './components';
+import { App, Signup, Signin } from './components';
+
 
 import '../resources/scss/style.scss';
 
 
 ReactDOM.render(
-  <Router history={createBrowserHistory()}>
-    <Provider store={store}>
+  <BrowserRouter>
+  <Provider store={store}>
       <Switch>
-        <Route path="/" component={App} />
+        <Route path="/" component={Signin} exact={true} />
+        <Route path="/signup" component={Signup} />
+        <Route path ="/home" component={App}/>
       </Switch>
-    </Provider>
-  </Router>,
-  document.getElementById('root'),
-);
+    </Provider>  
+  </BrowserRouter>,document.getElementById('app'));
