@@ -40,12 +40,6 @@ class Home extends React.Component {
       <div className="container">
         <div className="row pt-5">
           <div className="col-12 col-lg-6 offset-lg-3">
-            <h1 className="text-center">Blog</h1>
-          </div>
-          <Form />
-        </div>
-        <div className="row pt-5">
-          <div className="col-12 col-lg-6 offset-lg-3">
             {articles.map((article) => {
               return (
                 <div className="card my-3">
